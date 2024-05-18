@@ -6,7 +6,7 @@ import { routesName } from '@/helpers/routes_names';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { tagsNames } from '@/helpers/tags_names';
 
-const baseUrl = 'http://localhost:8000/api';
+const baseUrl = 'http://node_api:8000/api';
 
 export const fetchEmployees = async (): Promise<EmployeesDTO[]> => {
   try {
