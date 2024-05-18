@@ -17,10 +17,13 @@ export const fetchEmployees = async (): Promise<EmployeesDTO[]> => {
     return response;
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch invoice.');
+    //todo:feedback error
+    return [];
   }
 };
-export const fetchEmployeeById = async (id: string): Promise<EmployeesDTO> => {
+export const fetchEmployeeById = async (
+  id: string
+): Promise<EmployeesDTO | undefined> => {
   try {
     const res = await fetch(`${baseUrl}/employees/${id}`, {
       next: { tags: [tagsNames.EMPLOYEE, id] },
@@ -29,7 +32,7 @@ export const fetchEmployeeById = async (id: string): Promise<EmployeesDTO> => {
     return response;
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch invoice.');
+    return undefined;
   }
 };
 

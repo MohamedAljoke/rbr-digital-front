@@ -11,7 +11,7 @@ import ButtonDefault from '@/app/components/commons/buttons/Buttons';
 import CustomFormControl from '@/app/components/commons/form_control/FormControl';
 import { EmployeesDTO } from '@/server/DTO/employees_dto';
 
-export default async function UpdateEmployeeForm({ employee }: { employee: EmployeesDTO }) {
+export default async function UpdateEmployeeForm({ employee }: { employee?: EmployeesDTO }) {
   const initialState = { message: null, errors: {} } as CreateEmployeeErrorState;
   const [state, dispatch] = useFormState(updateEmployees, initialState);
   if (!employee) {
@@ -25,40 +25,38 @@ export default async function UpdateEmployeeForm({ employee }: { employee: Emplo
     <form
       action={(e) => handleSubmit(e)}
     >
-      <ChakraProvider>
-        <div className='mt-8'>
-          <p>Insira as informações do usuário</p>
-          <div
-            className='mt-6 flex flex-col gap-4'>
-            <CustomFormControl
-              defaultValue={employee.name}
-              id="name"
-              label='Nome do funcionário'
-              errorMessage={state.errors?.name?.[0]}
-            />
-            <CustomFormControl
-              defaultValue={employee.position}
-              id="position"
-              label='Cargo'
-              errorMessage={state.errors?.position?.[0]}
-            />
-            <CustomFormControl
-              defaultValue={employee.department}
-              id="department"
-              label='Departamento'
-              errorMessage={state.errors?.department?.[0]}
-            />
-            <CustomFormControl
-              defaultValue={employee.admissionDate}
-              id="admissionDate"
-              label='data de admissão'
-              errorMessage={state.errors?.admissionDate?.[0]}
-            />
+      <div className='mt-8'>
+        <p>Insira as informações do usuário</p>
+        <div
+          className='mt-6 flex flex-col gap-4'>
+          <CustomFormControl
+            defaultValue={employee.name}
+            id="name"
+            label='Nome do funcionário'
+            errorMessage={state.errors?.name?.[0]}
+          />
+          <CustomFormControl
+            defaultValue={employee.position}
+            id="position"
+            label='Cargo'
+            errorMessage={state.errors?.position?.[0]}
+          />
+          <CustomFormControl
+            defaultValue={employee.department}
+            id="department"
+            label='Departamento'
+            errorMessage={state.errors?.department?.[0]}
+          />
+          <CustomFormControl
+            defaultValue={employee.admissionDate}
+            id="admissionDate"
+            label='data de admissão'
+            errorMessage={state.errors?.admissionDate?.[0]}
+          />
 
-            <RegisterButton />
-          </div>
+          <RegisterButton />
         </div>
-      </ChakraProvider>
+      </div>
       {
         state.message ?
           <p className="absolute tex text-xs font-light italic text-alert">{state.message}</p> : null

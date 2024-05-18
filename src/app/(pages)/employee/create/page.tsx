@@ -25,37 +25,35 @@ export default async function CreateEmployee() {
       <form
         action={dispatch}
       >
-        <ChakraProvider>
-          <div className='mt-8'>
-            <p>Insira as informações do usuário</p>
-            <div
-              className='mt-6 flex flex-col gap-4'>
-              <CustomFormControl
-                // defaultValue={employee?.name}
-                id="name"
-                label='Nome do funcionário'
-                errorMessage={state.errors?.name?.[0]}
-              />
-              <CustomFormControl
-                id="position"
-                label='Cargo'
-                errorMessage={state.errors?.position?.[0]}
-              />
-              <CustomFormControl
-                id="department"
-                label='Departamento'
-                errorMessage={state.errors?.department?.[0]}
-              />
-              <CustomFormControl
-                id="admissionDate"
-                label='data de admissão'
-                errorMessage={state.errors?.admissionDate?.[0]}
-              />
+        <div className='mt-8'>
+          <p>Insira as informações do usuário</p>
+          <div
+            className='mt-6 flex flex-col gap-4'>
+            <CustomFormControl
+              // defaultValue={employee?.name}
+              id="name"
+              label='Nome do funcionário'
+              errorMessage={state.errors?.name?.[0]}
+            />
+            <CustomFormControl
+              id="position"
+              label='Cargo'
+              errorMessage={state.errors?.position?.[0]}
+            />
+            <CustomFormControl
+              id="department"
+              label='Departamento'
+              errorMessage={state.errors?.department?.[0]}
+            />
+            <CustomFormControl
+              id="admissionDate"
+              label='data de admissão'
+              errorMessage={state.errors?.admissionDate?.[0]}
+            />
 
-              <RegisterButton />
-            </div>
+            <RegisterButton />
           </div>
-        </ChakraProvider>
+        </div>
         {
           state.message ?
             <p className="absolute tex text-xs font-light italic text-alert">{state.message}</p> : null
