@@ -28,12 +28,12 @@ export default async function Employees() {
       </div>
       <CustomTable
         headers={employeesHeader}
-        tableContent={employeesList.map(employee => {
+        tableContent={employeesList?.map(employee => {
           return [
             employee.name,
             employee.position,
             employee.department,
-            <div className="flex gap-2">
+            <div key={employee.id} className="flex gap-2">
               <Link
                 href={`${routesName.employees.edit}/${employee.id}`}
                 data-open-modal
