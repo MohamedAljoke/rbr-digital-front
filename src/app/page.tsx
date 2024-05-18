@@ -1,9 +1,8 @@
-import Image from "next/image";
 import CustomTable from "./components/commons/table/Table";
-import { EmployeesDTO } from "@/server/DTO/employees_dto";
 import { fetchEmployees } from "@/server/actions/employees_actions";
 import Link from "next/link";
 import { routesName } from "@/helpers/routes_names";
+import DeleteEmployee from "./components/delete_employee/DeleteEmployee";
 
 const employeesHeader = [
   "nome",
@@ -34,6 +33,18 @@ export default async function Employees() {
             employee.name,
             employee.position,
             employee.department,
+            <div className="flex gap-2">
+              <Link
+                href={`${routesName.employees.edit}/${employee.id}`}
+                data-open-modal
+                className='cursor-pointer'
+              >
+                <span className="text-indigo-600 hover:text-indigo-900">
+                  Edit<span className="sr-only">{employee.name}</span>
+                </span>
+              </Link>
+              <DeleteEmployee id={employee.id} />
+            </div>
           ]
         })}
       />

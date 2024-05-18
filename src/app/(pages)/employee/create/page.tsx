@@ -3,18 +3,16 @@ import Link from 'next/link'
 import React from 'react'
 import { useFormState, useFormStatus } from 'react-dom';
 import {
-  FormErrorMessage,
   ChakraProvider,
 } from '@chakra-ui/react'
 import { routesName } from '@/helpers/routes_names'
-import { addEmployees, CreateEmployeeErrorState } from '@/server/actions/employees_actions';
+import { addEmployees, CreateEmployeeErrorState, updateEmployees } from '@/server/actions/employees_actions';
 import ButtonDefault from '@/app/components/commons/buttons/Buttons';
 import CustomFormControl from '@/app/components/commons/form_control/FormControl';
 
-export default function CreateEmployee() {
+export default async function CreateEmployee() {
   const initialState = { message: null, errors: {} } as CreateEmployeeErrorState;
   const [state, dispatch] = useFormState(addEmployees, initialState);
-
   return (
     <main className="flex min-h-screen flex-col p-24">
       <div>
@@ -33,6 +31,7 @@ export default function CreateEmployee() {
             <div
               className='mt-6 flex flex-col gap-4'>
               <CustomFormControl
+                // defaultValue={employee?.name}
                 id="name"
                 label='Nome do funcionário'
                 errorMessage={state.errors?.name?.[0]}

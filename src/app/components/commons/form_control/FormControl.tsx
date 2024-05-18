@@ -6,12 +6,14 @@ interface IFormControlParams {
   id: string
   label?: string
   errorMessage?: string
+  defaultValue?: string
 }
-export default function CustomFormControl({ id, label, errorMessage }: IFormControlParams) {
+export default function CustomFormControl({ id, label, errorMessage, defaultValue }: IFormControlParams) {
   return (
     <FormControl id={id}>
       <FormLabel className='text-xs'>{label}</FormLabel>
       <Input
+        defaultValue={defaultValue}
         name={id}
         errorBorderColor='crimson'
         type='text' />
